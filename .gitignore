@@ -137,3 +137,4 @@ dist
 
 neat-stitch-backend/node_modules
 neat-stitch-ui/node_modules
+neat-stitch-ui/.vite/deps
