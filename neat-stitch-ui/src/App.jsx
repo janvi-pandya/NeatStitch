@@ -67,23 +67,6 @@ const App = () => {
                 Neat Stitch
               </Typography>
               <Button 
-                component={Link} 
-                to="/collections" 
-                color="inherit" 
-                sx={{ mx: 2 }}
-              >
-                Collections
-              </Button>
-              <IconButton color="inherit" sx={{ mx: 1 }}>
-                <InstagramIcon />
-              </IconButton>
-              <IconButton color="inherit" sx={{ mx: 1 }}>
-                <FacebookIcon />
-              </IconButton>
-              <IconButton color="inherit" sx={{ mx: 1 }}>
-                <PinterestIcon />
-              </IconButton>
-              <Button 
                 variant="contained" 
                 color="secondary" 
                 startIcon={<WhatsAppIcon />}
@@ -172,6 +155,8 @@ const App = () => {
                         >
                           <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, flexWrap: 'wrap' }}>
                             <Button
+                              component={Link} 
+                              to="/collections"
                               variant="contained"
                               color="secondary"
                               size="large"
