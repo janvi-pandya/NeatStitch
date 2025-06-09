@@ -134,3 +134,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+neat-stitch-backend/node_modules
+neat-stitch-ui/node_modules
+neat-stitch-ui/.vite/deps
+neat-stitch-ui/.vite/deps/_metadata.json
