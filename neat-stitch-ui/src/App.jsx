@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button, Container, Grid, Card, CardMedia, CardContent, CardActions, Box, IconButton } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -8,6 +8,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import PinterestIcon from '@mui/icons-material/Pinterest';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Collections from './pages/Collections';
+import ConsultationForm from './components/ConsultationForm';
 
 const theme = createTheme({
   palette: {
@@ -35,19 +36,19 @@ const showcaseItems = [
   {
     title: "The Art of Bridal Couture",
     subtitle: "Where Tradition Meets Innovation",
-    image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1500&q=80",
+    image: "https://i0.wp.com/www.annuscreation.in/wp-content/uploads/2023/02/DSC1792.jpg?w=1152&ssl=1&fit=crop&w=1500&q=80",
     description: "Experience the perfect blend of traditional craftsmanship and contemporary design in our exclusive bridal collection."
   },
   {
     title: "Crafted with Passion",
     subtitle: "Every Stitch Tells a Story",
-    image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1500&q=80",
+    image: "https://i0.wp.com/www.annuscreation.in/wp-content/uploads/2021/05/VGJ03707_1-1.jpg?fit=864%2C1080&ssl=1&fit=crop&w=1500&q=80",
     description: "Our master artisans pour their heart into every creation, ensuring each piece is a masterpiece."
   },
   {
     title: "Timeless Elegance",
     subtitle: "Designs That Transcend Time",
-    image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1500&q=80",
+    image: "https://i0.wp.com/www.annuscreation.in/wp-content/uploads/2020/05/ORA_9983-e1592977177284.jpg?fit=1350%2C900&ssl=1&fit=crop&w=1500&q=80",
     description: "Discover collections that celebrate the eternal beauty of bridal fashion."
   }
 ];
@@ -56,13 +57,22 @@ const App = () => {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
+  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
+
+  const handleOpenConsultation = () => {
+    setIsConsultationOpen(true);
+  };
+
+  const handleCloseConsultation = () => {
+    setIsConsultationOpen(false);
+  };
 
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <Box sx={{ minHeight: '100vh', bgcolor: '#FFF8F0', width: '100vw', overflowX: 'hidden' }}>
           <AppBar position="fixed" elevation={0} sx={{ bgcolor: 'rgba(139,69,19,0.95)', boxShadow: 3 }}>
-            <Toolbar sx={{ maxWidth: 1400, mx: 'auto', width: '100%' }}>
+            <Toolbar sx={{ maxWidth: 1000, mx: 'auto', width: '100%' }}>
               <Typography variant="h5" sx={{ flexGrow: 1, fontWeight: 700, letterSpacing: 2, color: '#D4AF37' }}>
                 Neat Stitch
               </Typography>
@@ -71,11 +81,22 @@ const App = () => {
                 color="secondary" 
                 startIcon={<WhatsAppIcon />}
                 sx={{ 
-                  ml: 2,
+                  ml: 0,
+                  mr:3,
                   fontWeight: 600,
                   borderRadius: 2,
                   boxShadow: 2,
                   bgcolor: '#D4AF37',
+                  fontSize: { xs: '0.7rem', sm: '1rem' },
+                  px: { xs: 1, sm: 2 },
+                  py: { xs: 0.3, sm: 1 },
+                  minWidth: { xs: 'auto', sm: '120px' },
+                  '& .MuiButton-startIcon': {
+                    marginRight: { xs: 0.5, sm: 1 },
+                    '& svg': {
+                      fontSize: { xs: '0.9rem', sm: '1.25rem' }
+                    }
+                  },
                   '&:hover': {
                     bgcolor: '#B8860B',
                   }
@@ -116,7 +137,7 @@ const App = () => {
                         position: 'absolute',
                         width: '100%',
                         height: '100%',
-                        background: `linear-gradient(rgba(139,69,19,0.7),rgba(212,175,55,0.3)), url(https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1500&q=80) center/cover no-repeat`,
+                        background: `linear-gradient(rgba(139,69,19,0.7),rgba(212,175,55,0.3)), url(https://i0.wp.com/www.annuscreation.in/wp-content/uploads/2020/05/Blog1_1.jpg?w=1920&ssl=1?auto=format&fit=crop&w=1500&q=80) center/cover no-repeat`,
                       }}
                     />
                     <Container maxWidth="md" sx={{ position: 'relative', zIndex: 2, textAlign: 'center', color: 'white' }}>
@@ -181,6 +202,7 @@ const App = () => {
                               variant="outlined"
                               color="secondary"
                               size="large"
+                              onClick={handleOpenConsultation}
                               sx={{
                                 px: 5,
                                 py: 1.5,
@@ -346,6 +368,12 @@ const App = () => {
               </>
             } />
           </Routes>
+
+          {/* Consultation Form Dialog */}
+          <ConsultationForm 
+            open={isConsultationOpen} 
+            onClose={handleCloseConsultation} 
+          />
         </Box>
       </ThemeProvider>
     </Router>

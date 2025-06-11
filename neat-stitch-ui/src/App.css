@@ -1,13 +1,14 @@
 #root {
-  max-width: 1280px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;
   text-align: center;
+  overflow-x: hidden;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
+  height: clamp(4em, 8vw, 6em);
+  padding: clamp(0.5em, 2vw, 1.5em);
   will-change: filter;
   transition: filter 300ms;
 }
@@ -34,9 +35,105 @@
 }
 
 .card {
-  padding: 2em;
+  padding: clamp(1em, 3vw, 2em);
 }
 
 .read-the-docs {
   color: #888;
+}
+
+/* Responsive Typography */
+@media (max-width: 600px) {
+  h1 {
+    font-size: clamp(1.5rem, 8vw, 2.5rem) !important;
+  }
+  
+  h2 {
+    font-size: clamp(1.2rem, 6vw, 1.8rem) !important;
+  }
+  
+  h3 {
+    font-size: clamp(1rem, 5vw, 1.5rem) !important;
+  }
+  
+  p {
+    font-size: clamp(0.875rem, 4vw, 1rem) !important;
+  }
+}
+
+/* Responsive Spacing */
+@media (max-width: 600px) {
+  .MuiContainer-root {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  
+  .MuiGrid-container {
+    gap: 16px !important;
+  }
+}
+
+/* Responsive Images */
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Touch-friendly elements for mobile */
+@media (max-width: 600px) {
+  button, 
+  .MuiButton-root,
+  .MuiIconButton-root {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .MuiIconButton-root {
+    padding: 12px;
+  }
+}
+
+/* Mobile Navigation */
+@media (max-width: 600px) {
+  .MuiAppBar-root {
+    padding: 8px 0;
+  }
+  
+  .MuiToolbar-root {
+    padding: 0 16px;
+  }
+}
+
+/* Mobile Hero Section */
+@media (max-width: 600px) {
+  .hero-section {
+    height: 80vh !important;
+  }
+  
+  .hero-content {
+    padding: 0 16px;
+  }
+}
+
+/* Mobile Showcase Sections */
+@media (max-width: 600px) {
+  .showcase-section {
+    padding: 32px 16px;
+  }
+  
+  .showcase-image {
+    max-height: 50vh !important;
+  }
+}
+
+/* Mobile Footer */
+@media (max-width: 600px) {
+  .footer {
+    padding: 24px 16px;
+  }
+  
+  .social-icons {
+    gap: 16px;
+  }
 }
